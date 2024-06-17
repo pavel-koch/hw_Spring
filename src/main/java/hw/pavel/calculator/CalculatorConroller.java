@@ -20,25 +20,41 @@ public class CalculatorConroller {
     }
 
     @GetMapping(path = "/plus")
-    public String plus(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String plus(@RequestParam(value = "num1", required = false) Integer num1,
+                       @RequestParam(value = "num2", required = false) Integer num2) {
+        if (num1 == null || num2 == null) {
+            return "Один из параметров отсутствует";
+        }
         int result = calculatorService.plus(num1, num2);
         return num1 + " + " + num2 + " = " + result;
     }
 
     @GetMapping(path = "/minus")
-    public String minus(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String minus(@RequestParam(value = "num1", required = false) Integer num1,
+                        @RequestParam(value = "num2", required = false) Integer num2) {
+        if (num1 == null || num2 == null) {
+            return "Один из параметров отсутствует";
+        }
         int result = calculatorService.minus(num1, num2);
         return num1 + " - " + num2 + " = " + result;
     }
 
     @GetMapping(path = "/multiply")
-    public String multiply(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String multiply(@RequestParam(value = "num1", required = false) Integer num1,
+                           @RequestParam(value = "num2", required = false) Integer num2) {
+        if (num1 == null || num2 == null) {
+            return "Один из параметров отсутствует";
+        }
         int result = calculatorService.multiply(num1, num2);
         return num1 + " * " + num2 + " = " + result;
     }
 
     @GetMapping(path = "/divide")
-    public String divide(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
+    public String divide(@RequestParam(value = "num1", required = false) Integer num1,
+                         @RequestParam(value = "num2", required = false) Integer num2) {
+        if (num1 == null || num2 == null) {
+            return "Один из параметров отсутствует";
+        }
         if (num2 != 0) {
             double result = calculatorService.divide(num1, num2);
             return num1 + " / " + num2 + " = " + result;
